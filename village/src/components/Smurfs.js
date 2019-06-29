@@ -11,14 +11,14 @@ class Smurfs extends React.Component {
         {this.props.smurfs
             ? this.props.smurfs.map(smurf => {
                 return (
-                  <Smurf
+                  <NavLink to="/form"><Smurf
                     key={smurf.id}
                     name={smurf.name}
                     id={smurf.id}
                     age={smurf.age}
                     height={smurf.height}
                     smurfs={this.props.smurfs}
-                  />
+                  />    /></NavLink>
                 );
               })
             : 'loading...'}

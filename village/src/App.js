@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
-import SmurfPage from './pages/SmurfPage';
+import SmurfPage from './components/SmurfPage';
 import Smurf from './components/Smurf';
 class App extends Component {
   constructor(props) {
@@ -27,21 +27,20 @@ class App extends Component {
     return (
       <div className="App">
         
-        <Link to="/">Home</Link>
-        <Link to="/addSmurf">Add Smurf</Link>
-        <Route path="/addSmurf" component={SmurfForm} />
-        <Route
-          path="/"
-          component={() => <Smurfs smurfs={this.state.smurfs} />}
-          exact
-        />
-        <Route
-          path="/smurf/:id"
-          component={SmurfPage}
-          smurfs={this.state.smurfs}
-        />
+        <nav className="nav">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/form">Add Smurf</NavLink>
+        </nav>
+        <Route path="/form" render= {(props) =>
+        <SmurfForm
+        {...props}
+        addSmurf={this.addSmurf}/>}/>
+        <Route exact path="/" render={(props) => <Smurfs
+        {...props}
+        smurfs={this.state.smurfs}/>}/>
       </div>
     );
   }
 }
+
 export default App;
